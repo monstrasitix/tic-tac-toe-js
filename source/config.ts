@@ -1,5 +1,5 @@
 export const CELL_SIZE = 75;
-export const CELL_COUNT = 3;
+export const CELL_COUNT = 5;
 
 export const SYMBOL_SIZE = (
     (CELL_SIZE - CELL_SIZE * 0.7) / 2
