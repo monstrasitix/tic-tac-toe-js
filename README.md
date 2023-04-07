@@ -1,6 +1,6 @@
 # Tic-Tac-Toe in JavaScript
 
-![Tic-Tac-Toe](./preview.png)
+<img src="./preview.png" width="400"  />
 
 ## Configuration
 
