@@ -1,4 +1,4 @@
-import { drawBackground, drawGrid, drawLine, drawO, drawX } from './draw';
+import { drawBackground, drawGrid, drawO, drawX } from './draw';
 import { createCanvas, draw, mount, resize } from './context';
 import { CELL_COUNT } from './config';
 
@@ -6,15 +6,18 @@ const ctx = createCanvas();
 mount(ctx, document.body);
 resize(ctx);
 
+const initialRender = (buffer: CanvasRenderingContext2D) => {
+    drawBackground(buffer);
+    drawGrid(buffer);
+};
+
 window.addEventListener('resize', () => {
     resize(ctx);
-    draw(ctx, drawBackground);
-    draw(ctx, drawGrid);
+    draw(ctx, initialRender);
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    draw(ctx, drawBackground);
-    draw(ctx, drawGrid);
+    draw(ctx, initialRender);
 
     const rand = (max: number, min: number = 0) => (
         Math.floor(Math.random() * (max - min)) + min

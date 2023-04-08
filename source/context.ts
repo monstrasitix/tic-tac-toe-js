@@ -4,7 +4,7 @@ export type Contexts = {
 };
 
 export type DrawHandler = (
-    (this: CanvasRenderingContext2D) => void
+    (ctx: CanvasRenderingContext2D) => void
 );
 
 const createContext = () => (
@@ -23,7 +23,7 @@ export const mount = (c: Contexts, target: HTMLElement) => {
 }
 
 export const draw = (c: Contexts, handler: DrawHandler) => {
-    handler.call(c.buffer);
+    handler(c.buffer);
     c.screen.drawImage(c.buffer.canvas, 0, 0);
 };
 

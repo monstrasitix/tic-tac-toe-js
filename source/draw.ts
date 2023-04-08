@@ -1,13 +1,13 @@
 import * as Config from "./config";
 
-export function drawBackground(this: CanvasRenderingContext2D) {
-    const { width, height } = this.canvas;
+export const drawBackground = (ctx: CanvasRenderingContext2D) => {
+    const { width, height } = ctx.canvas;
 
-    this.fillStyle = Config.BACKGROUND_COLOR;
-    this.fillRect(0, 0, width, height);
+    ctx.fillStyle = Config.BACKGROUND_COLOR;
+    ctx.fillRect(0, 0, width, height);
 }
 
-export function drawGrid(this: CanvasRenderingContext2D) {
+export const drawGrid = (ctx: CanvasRenderingContext2D) => {
     const cellSize = Config.CELL_SIZE;
     const cellCount = Config.CELL_COUNT;
 
@@ -15,12 +15,12 @@ export function drawGrid(this: CanvasRenderingContext2D) {
     const hGridSize = cellCount * cellSize / 2;
 
     // (x, y) for grid's top left corner
-    const pivotX = this.canvas.width / 2 - hGridSize;
-    const pivotY = this.canvas.height / 2 - hGridSize;
+    const pivotX = ctx.canvas.width / 2 - hGridSize;
+    const pivotY = ctx.canvas.height / 2 - hGridSize;
 
-    this.lineCap = 'round';
-    this.lineWidth = Config.LINE_WIDTH;
-    this.strokeStyle = Config.LINE_COLOR;
+    ctx.lineCap = 'round';
+    ctx.lineWidth = Config.LINE_WIDTH;
+    ctx.strokeStyle = Config.LINE_COLOR;
 
     for (let index = 1; index < cellCount; index++) {
         // Constant positions
@@ -28,20 +28,20 @@ export function drawGrid(this: CanvasRenderingContext2D) {
         const x = pivotX + cellSize * index;
 
         // Horizontal
-        this.beginPath();
-        this.moveTo(pivotX, y);
-        this.lineTo(pivotX + cellSize * cellCount, y);
-        this.stroke();
+        ctx.beginPath();
+        ctx.moveTo(pivotX, y);
+        ctx.lineTo(pivotX + cellSize * cellCount, y);
+        ctx.stroke();
 
         // Vertical
-        this.beginPath();
-        this.moveTo(x, pivotY);
-        this.lineTo(x, pivotY + cellSize * cellCount);
-        this.stroke();
+        ctx.beginPath();
+        ctx.moveTo(x, pivotY);
+        ctx.lineTo(x, pivotY + cellSize * cellCount);
+        ctx.stroke();
     }
 }
 
-export function drawLine(this: CanvasRenderingContext2D) {
+export const drawLine = (ctx: CanvasRenderingContext2D) => {
     const cellSize = Config.CELL_SIZE;
     const cellCount = Config.CELL_COUNT;
 
@@ -49,22 +49,22 @@ export function drawLine(this: CanvasRenderingContext2D) {
     const hGridSize = cellCount * cellSize / 2;
 
     // (x, y) for grid's top left corner
-    const pivotX = this.canvas.width / 2 - hGridSize;
-    const pivotY = this.canvas.height / 2 - hGridSize;
+    const pivotX = ctx.canvas.width / 2 - hGridSize;
+    const pivotY = ctx.canvas.height / 2 - hGridSize;
 
     {
         // Continue drawing lines
         // Horizontal
         const y = pivotY + (cellSize / 2) * 1;
     
-        this.lineCap = 'round';
-        this.lineWidth = Config.LINE_WIDTH;
-        this.strokeStyle = Config.LINE_COLOR;
+        ctx.lineCap = 'round';
+        ctx.lineWidth = Config.LINE_WIDTH;
+        ctx.strokeStyle = Config.LINE_COLOR;
         
-        this.beginPath();
-        this.moveTo(pivotX, y);
-        this.lineTo(pivotX + cellSize * cellCount, y);
-        this.stroke();
+        ctx.beginPath();
+        ctx.moveTo(pivotX, y);
+        ctx.lineTo(pivotX + cellSize * cellCount, y);
+        ctx.stroke();
     }
 } 
 
@@ -97,42 +97,42 @@ const calcPosition = (
     ];
 };
 
-export const drawO = (pointX: number, pointY: number) =>  function (this: CanvasRenderingContext2D) {
-    this.lineCap = 'round';
-    this.lineWidth = Config.LINE_WIDTH;
-    this.strokeStyle = Config.O_COLOR;
+export const drawO = (pointX: number, pointY: number) => (ctx: CanvasRenderingContext2D) => {
+    ctx.lineCap = 'round';
+    ctx.lineWidth = Config.LINE_WIDTH;
+    ctx.strokeStyle = Config.O_COLOR;
 
     const [x, y] = calcPosition(
-        this.canvas.width,
-        this.canvas.height,
+        ctx.canvas.width,
+        ctx.canvas.height,
         pointX,
         pointY,
     );
 
-    this.beginPath();
-    this.arc(x, y, Config.SYMBOL_SIZE, 0, Math.PI * 2, false);
-    this.stroke();
+    ctx.beginPath();
+    ctx.arc(x, y, Config.SYMBOL_SIZE, 0, Math.PI * 2, false);
+    ctx.stroke();
 }
 
-export const drawX = (pointX: number, pointY: number) =>  function (this: CanvasRenderingContext2D) {
-    this.lineCap = 'round';
-    this.lineWidth = Config.LINE_WIDTH;
-    this.strokeStyle = Config.X_COLOR;
+export const drawX = (pointX: number, pointY: number) => (ctx: CanvasRenderingContext2D) => {
+    ctx.lineCap = 'round';
+    ctx.lineWidth = Config.LINE_WIDTH;
+    ctx.strokeStyle = Config.X_COLOR;
 
     const [x, y] = calcPosition(
-        this.canvas.width,
-        this.canvas.height,
+        ctx.canvas.width,
+        ctx.canvas.height,
         pointX,
         pointY,
     );
 
-    this.beginPath();
-    this.moveTo(x - Config.SYMBOL_SIZE, y - Config.SYMBOL_SIZE);
-    this.lineTo(x + Config.SYMBOL_SIZE, y + Config.SYMBOL_SIZE);
-    this.stroke();
+    ctx.beginPath();
+    ctx.moveTo(x - Config.SYMBOL_SIZE, y - Config.SYMBOL_SIZE);
+    ctx.lineTo(x + Config.SYMBOL_SIZE, y + Config.SYMBOL_SIZE);
+    ctx.stroke();
 
-    this.beginPath();
-    this.moveTo(x + Config.SYMBOL_SIZE, y - Config.SYMBOL_SIZE);
-    this.lineTo(x - Config.SYMBOL_SIZE, y + Config.SYMBOL_SIZE);
-    this.stroke();
+    ctx.beginPath();
+    ctx.moveTo(x + Config.SYMBOL_SIZE, y - Config.SYMBOL_SIZE);
+    ctx.lineTo(x - Config.SYMBOL_SIZE, y + Config.SYMBOL_SIZE);
+    ctx.stroke();
 }
