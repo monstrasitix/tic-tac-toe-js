@@ -57,17 +57,17 @@ export const drawLine = (ctx: CanvasRenderingContext2D) => {
         // Continue drawing lines
         // Horizontal
         const y = pivotY + (cellSize / 2) * 1;
-    
+
         ctx.lineCap = 'round';
         ctx.lineWidth = Config.LINE_WIDTH;
         ctx.strokeStyle = Config.LINE_COLOR;
-        
+
         ctx.beginPath();
         ctx.moveTo(pivotX, y);
         ctx.lineTo(pivotX + cellSize * cellCount, y);
         ctx.stroke();
     }
-} 
+}
 
 const clamp = (max: number, min: number, value: number) => (
     Math.min(Math.max(value, min), max)
