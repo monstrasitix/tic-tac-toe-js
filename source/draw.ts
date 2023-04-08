@@ -18,8 +18,6 @@ export const drawGrid = (ctx: CanvasRenderingContext2D) => {
     const pivotX = ctx.canvas.width / 2 - hGridSize;
     const pivotY = ctx.canvas.height / 2 - hGridSize;
 
-    ctx.lineCap = 'round';
-    ctx.lineWidth = Config.LINE_WIDTH;
     ctx.strokeStyle = Config.LINE_COLOR;
 
     for (let index = 1; index < cellCount; index++) {
@@ -57,8 +55,6 @@ export const drawLine = (ctx: CanvasRenderingContext2D) => {
         // Horizontal
         const y = pivotY + (cellSize / 2) * 1;
     
-        ctx.lineCap = 'round';
-        ctx.lineWidth = Config.LINE_WIDTH;
         ctx.strokeStyle = Config.LINE_COLOR;
         
         ctx.beginPath();
@@ -91,6 +87,7 @@ const calcPosition = (
 
     const hCellSize = Config.CELL_SIZE / 2;
     const hGridSize = Config.CELL_COUNT * hCellSize;
+
     return [
         width / 2 - hGridSize + (posX * Config.CELL_SIZE - hCellSize),
         height / 2 - hGridSize + (posY * Config.CELL_SIZE - hCellSize),
@@ -98,8 +95,6 @@ const calcPosition = (
 };
 
 export const drawO = (pointX: number, pointY: number) => (ctx: CanvasRenderingContext2D) => {
-    ctx.lineCap = 'round';
-    ctx.lineWidth = Config.LINE_WIDTH;
     ctx.strokeStyle = Config.O_COLOR;
 
     const [x, y] = calcPosition(
@@ -115,8 +110,6 @@ export const drawO = (pointX: number, pointY: number) => (ctx: CanvasRenderingCo
 }
 
 export const drawX = (pointX: number, pointY: number) => (ctx: CanvasRenderingContext2D) => {
-    ctx.lineCap = 'round';
-    ctx.lineWidth = Config.LINE_WIDTH;
     ctx.strokeStyle = Config.X_COLOR;
 
     const [x, y] = calcPosition(
