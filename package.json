@@ -4,12 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "parcel serve ./index.html --no-cache"
+    "start": "parcel serve ./index.html --no-cache",
+    "lint": "eslint ./ --ext=.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "parcel": "^2.8.3"
+    "@typescript-eslint/eslint-plugin": "^5.57.1",
+    "@typescript-eslint/parser": "^5.57.1",
+    "eslint": "^8.38.0",
+    "parcel": "^2.8.3",
+    "typescript": "^5.0.4"
   }
 }

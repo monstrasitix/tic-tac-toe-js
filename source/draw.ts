@@ -1,4 +1,4 @@
-import * as Config from "./config";
+import * as Config from './config';
 
 export const drawBackground = (ctx: CanvasRenderingContext2D) => {
     const { width, height } = ctx.canvas;
@@ -6,7 +6,7 @@ export const drawBackground = (ctx: CanvasRenderingContext2D) => {
     ctx.fillStyle = Config.BACKGROUND_COLOR;
 
     ctx.fillRect(0, 0, width, height);
-}
+};
 
 export const drawGrid = (ctx: CanvasRenderingContext2D) => {
     const cellSize = Config.CELL_SIZE;
@@ -40,7 +40,7 @@ export const drawGrid = (ctx: CanvasRenderingContext2D) => {
         ctx.lineTo(x, pivotY + cellSize * cellCount);
         ctx.stroke();
     }
-}
+};
 
 export const drawLine = (ctx: CanvasRenderingContext2D) => {
     const cellSize = Config.CELL_SIZE;
@@ -67,7 +67,7 @@ export const drawLine = (ctx: CanvasRenderingContext2D) => {
         ctx.lineTo(pivotX + cellSize * cellCount, y);
         ctx.stroke();
     }
-}
+};
 
 const clamp = (max: number, min: number, value: number) => (
     Math.min(Math.max(value, min), max)
@@ -99,7 +99,7 @@ const calcPosition = (
     ];
 };
 
-export const drawO = (pointX: number, pointY: number) => (ctx: CanvasRenderingContext2D) => {
+export const drawO = (ctx: CanvasRenderingContext2D, pointX: number, pointY: number) => {
     ctx.lineCap = 'round';
     ctx.lineWidth = Config.LINE_WIDTH;
     ctx.strokeStyle = Config.O_COLOR;
@@ -114,9 +114,9 @@ export const drawO = (pointX: number, pointY: number) => (ctx: CanvasRenderingCo
     ctx.beginPath();
     ctx.arc(x, y, Config.SYMBOL_SIZE, 0, Math.PI * 2, false);
     ctx.stroke();
-}
+};
 
-export const drawX = (pointX: number, pointY: number) => (ctx: CanvasRenderingContext2D) => {
+export const drawX = (ctx: CanvasRenderingContext2D, pointX: number, pointY: number) => {
     ctx.lineCap = 'round';
     ctx.lineWidth = Config.LINE_WIDTH;
     ctx.strokeStyle = Config.X_COLOR;
@@ -139,4 +139,4 @@ export const drawX = (pointX: number, pointY: number) => (ctx: CanvasRenderingCo
     ctx.moveTo(x + Config.SYMBOL_SIZE, y - Config.SYMBOL_SIZE);
     ctx.lineTo(x - Config.SYMBOL_SIZE, y + Config.SYMBOL_SIZE);
     ctx.stroke();
-}
+};

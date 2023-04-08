@@ -14,10 +14,11 @@ const initialRender = (buffer: CanvasRenderingContext2D) => {
     drawGrid(buffer);
 
     for (const symbol of symbols) {
-        (symbol.type === 'O'
-            ? drawO
-            : drawX
-        )(symbol.x, symbol.y)(buffer);
+		if (symbol.type === 'O') {
+			drawO(buffer, symbol.x, symbol.y);
+		} else {
+			drawX(buffer, symbol.x, symbol.y);
+		}
     }
 };
 

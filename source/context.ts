@@ -19,8 +19,8 @@ export const createCanvas = (): Contexts => ({
 });
 
 export const mount = (c: Contexts, target: HTMLElement) => {
-    target.appendChild(c.screen.canvas)
-}
+    target.appendChild(c.screen.canvas);
+};
 
 export const draw = (c: Contexts, handler: DrawHandler) => {
     handler(c.buffer);
