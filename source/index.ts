@@ -1,4 +1,4 @@
-import { drawBackground, drawGrid, drawO, drawX } from './draw';
+import { drawBackground, drawGrid, drawLine, drawO, drawX } from './draw';
 import { createCanvas, draw, mount, resize } from './context';
 import { CELL_COUNT } from './config';
 import { randInteger, randBool } from './random';
@@ -20,6 +20,11 @@ const initialRender = (buffer: CanvasRenderingContext2D) => {
 			drawX(buffer, symbol.x, symbol.y);
 		}
     }
+
+	drawLine(buffer, 'horizontal');
+	drawLine(buffer, 'vertical');
+	drawLine(buffer, 'diagonal');
+
 };
 
 window.addEventListener('resize', () => {
