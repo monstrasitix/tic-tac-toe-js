@@ -1,5 +1,3 @@
-import * as Config from './config';
-
 export type Contexts = {
     screen: CanvasRenderingContext2D;
     buffer: CanvasRenderingContext2D;
@@ -15,16 +13,10 @@ const createContext = () => (
         .getContext('2d') as CanvasRenderingContext2D
 );
 
-export const createCanvas = (): Contexts => {
-    const screen = createContext();
-    const buffer = createContext();
-
-    buffer.lineCap = 'round';
-    buffer.lineWidth = Config.LINE_WIDTH;
-
-
-    return { screen, buffer };
-};
+export const createCanvas = (): Contexts => ({
+    screen: createContext(),
+    buffer: createContext(),
+});
 
 export const mount = (c: Contexts, target: HTMLElement) => {
     target.appendChild(c.screen.canvas)
